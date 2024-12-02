@@ -12,3 +12,17 @@
     7. Devolveria 52. 
     8. Suma 1 al valor del Array[6] almacenado.
     9. Daria error ya que no existe un Array[14], es decir, paso del limite.
+
+---
+    
+    1. La longitud del Array es 4.
+    2. Su indice superior es 2.
+    3. Contiene un error y es que se asigna un valor que esta fuera del Array, es decir, de su limite.
+
+---
+
+    Scores[1.2] no se pueden decimales ya que es uun int, Scores[25] esta fuera de su limite, y Scores[-1] no se
+    acepta negativos. 
+
+---
+
