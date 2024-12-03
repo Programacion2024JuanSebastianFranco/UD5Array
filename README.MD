@@ -17,7 +17,8 @@
     
     1. La longitud del Array es 4.
     2. Su indice superior es 2.
-    3. Contiene un error y es que se asigna un valor que esta fuera del Array, es decir, de su limite.
+    3. Contiene un error y es que se asigna un valor que esta fuera del Array, es decir,
+    de su limite.
 
 ---
 
