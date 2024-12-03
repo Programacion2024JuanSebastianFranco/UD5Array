@@ -21,8 +21,34 @@
 
 ---
 
-    Scores[1.2] no se pueden decimales ya que es uun int, Scores[25] esta fuera de su limite, y Scores[-1] no se
+    Scores[1.2] no se pueden decimales ya que es un int, Scores[25] esta fuera de su limite, y Scores[-1] no se
     acepta negativos. 
 
 ---
 
+    Índice: [0] [1] [2] [3] [4] [5] [6]
+    Valor:  [71] [0] [0] [0] [71] [23] [42]
+
+---
+
+    posición 3 valor 0.0  
+    posición 2 valor 9.28  
+    posición 1 valor 0.21  
+    
+    Índice: [0] [1] [2] [3]
+    Valor:  [0.21] [4.31] [9.28] [0.0]
+
+---
+
+    array[3] == 61.5
+    
+    Índice: [0] [1] [2] [3]
+    Valor:  [5.1] [10.0] [51.5] [61.5]
+
+---
+
+    char[] dam = {'d', 'a', 'm'};
+    a) El tamaño del array es 3, ya que tiene tres elementos.
+    b) El valor en la segunda posicion es a.
+    c) No tiene ningun valor, ya que el índice 3 está fuera de rango, lo que generara una excepcion en tiempo de 
+    ejecucion: ArrayIndexOutOfBoundsException.
