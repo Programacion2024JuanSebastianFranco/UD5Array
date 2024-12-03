@@ -52,3 +52,14 @@
     b) El valor en la segunda posicion es a.
     c) No tiene ningun valor, ya que el índice 3 está fuera de rango, lo que generara una excepcion en tiempo de 
     ejecucion: ArrayIndexOutOfBoundsException.
+
+---
+
+    char[] dam = new char[3];
+    dam[0] = 'd';
+    dam[1] = 'a';
+    dam[2] = 'm';
+
+---
+
+    dataB: 45.0, 56.0, 0.0, 45.0, 23.0, 12.0
