@@ -30,5 +30,4 @@ public class Principal {
         } while (opc < 1 || opc > 5);
         return opc;
     }
-    }
 }
