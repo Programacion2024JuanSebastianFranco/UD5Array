@@ -34,7 +34,7 @@
 
     posición 3 valor 0.0  
     posición 2 valor 9.28  
-    posición 1 valor 0.21  
+    posición 1 valor 4.31  
     
     Índice: [0] [1] [2] [3]
     Valor:  [0.21] [4.31] [9.28] [0.0]
