@@ -52,7 +52,7 @@
     a) El tamaño del array es 3, ya que tiene tres elementos.
     b) El valor en la segunda posicion es a.
     c) No tiene ningun valor, ya que el indice 3 está fuera de rango, lo que generara 
-    una excepcion en tiempo de ejecucion: ArrayIndexOutOfBoundsException.
+    el siguiente error: ArrayIndexOutOfBoundsException.
 
 ---
 
