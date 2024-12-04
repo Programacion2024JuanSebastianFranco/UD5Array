@@ -9,7 +9,6 @@ public class Evaluacion {
     private double[] listaNotas;
 
 
-
     // Constructores
 
 
@@ -24,46 +23,57 @@ public class Evaluacion {
 
     // Metodos
 
-    public void leerNotas(int totalALumnos){
+    public void leerNotas(int totalALumnos) {
 
-        double nota;
+        boolean introducido = false;
 
         if (listaNotas != null) {
+            System.out.println("Notas ya introducidas desea introducirlas de nuevo(s/n)?");
 
-            System.out.print("Notas ya introducidas desea introducirlas de nuevo(s/n)?");
+            scan.nextLine();
+
             String opc = scan.nextLine();
 
-            if (opc.equalsIgnoreCase("s")){
+            while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n")) {
 
-                for (int i = 0; i < listaNotas.length; i++){
-                    System.out.print("Introduce la nota del alumno " + i);
-                    nota = scan.nextDouble();
-                    if (nota >= 0 && nota <= 10)
-                        listaNotas[i] = nota;
-                    else
-                        System.out.print("Nota no valida, maxima 10 y minima 0");
+                scan.nextLine();
 
-                }
+                System.out.println("Porfavor, (s/n)");
+                opc = scan.nextLine();
             }
 
-            else if (opc.equalsIgnoreCase("n")) {
-                double[] listaNotas = new double[totalALumnos];
+            if (opc.equalsIgnoreCase("s")) {
+                listaNotas = new double[totalALumnos];
+                ingresarNota(listaNotas);
+            } else if (opc.equalsIgnoreCase("n")) {
+                System.out.println("Adios");
             }
-
-            else {
-                System.err.print("Porfavor, (s/n)");
-            }
-        }
-        else {
-            double[] listaNotas = new double[totalALumnos];
+        } else {
+            listaNotas = new double[totalALumnos];
+            ingresarNota(listaNotas);
         }
     }
 
+    public void ingresarNota(double listaNotas[]) {
+
+        double nota;
+
+        for (int i = 0; i < listaNotas.length; ) {
+            System.out.println("Introduce la nota del alumno " + i);
+            nota = scan.nextDouble();
+            if (nota >= 0 && nota <= 10) {
+                listaNotas[i] = nota;
+                i++;
+            } else
+                System.out.println("Nota no valida, maxima 10 y minima 0");
+        }
+        this.listaNotas = listaNotas;
+    }
 
     @Override
     public String toString() {
-        return "Evaluacion:\n" +
-                "nombreAsignatura: " + nombreAsignatura + '\'' + "\n" +
-                "listaNotas=" + Arrays.toString(listaNotas);
+        return "Evaluacion{" +
+                "listaNotas=" + Arrays.toString(listaNotas) +
+                '}';
     }
 }
