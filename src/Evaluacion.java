@@ -52,7 +52,7 @@ public class Evaluacion {
         double nota;
 
         for (int i = 0; i < listaNotas.length; ) {
-            System.out.println("Introduce la nota del alumno " + i);
+            System.out.println("Introduce la nota del alumno " + (i + 1));
             nota = scan.nextDouble();
             if (nota >= 0 && nota <= 10) {
                 listaNotas[i] = nota;
@@ -112,13 +112,14 @@ public class Evaluacion {
         maximo = listaNotas.length;
 
         for (double nota : this.listaNotas) {
-            maximo = nota;
+            if (nota > maximo)
+                maximo = nota;
         }
 
         return maximo;
     }
 
-    public double suspensos(){
+    public int suspensos(){
 
         int suspensos = 0;
 
@@ -131,7 +132,7 @@ public class Evaluacion {
         return suspensos;
     }
 
-    public double aprobados(){
+    public int aprobados(){
 
         int aprobados = 0;
 
@@ -144,7 +145,56 @@ public class Evaluacion {
         return aprobados;
     }
 
-    public void cambiarNota(){
+    public void cambiarNota(double nuevaNota, int indiceAlumno) {
 
+        if (listaNotas == null) {
+            System.out.println("El array de notas no puede ser nulo");
+        }
+
+        if (indiceAlumno < 0 || indiceAlumno >= listaNotas.length + 1) {
+            System.out.println("El indice del alumno esta fuera del rango permitido");
+        }
+
+        listaNotas[indiceAlumno - 1] = nuevaNota;
+    }
+
+    public int mejorAlumno() {
+        if (listaNotas == null || listaNotas.length == 0) {
+            System.out.println("El array de notas no puede estar vacío o ser nulo");
+        }
+
+        double maxNota = maximo();
+        int indiceMejor = 0;
+
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] == maxNota) {
+                indiceMejor = i;
+            }
+        }
+
+        return indiceMejor + 1;
+    }
+
+    public int peorAlumno() {
+        if (listaNotas == null || listaNotas.length == 0) {
+            System.out.println("El array de notas no puede estar vacío o ser nulo");
+        }
+
+        double minNota = minimo();
+        int indicePeor = 0;
+
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] == minNota) {
+                indicePeor= i;
+            }
+        }
+
+        return indicePeor + 1;
+    }
+
+    public void notaAlumno(int indiceAlumno){
+        indiceAlumno = listaNotas;
+
+        return indiceAlumno;
     }
 }

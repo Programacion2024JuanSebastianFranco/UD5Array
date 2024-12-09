@@ -35,15 +35,27 @@ public class Principal {
                     System.out.println("La nota maxima de un estudiante fue de: " + minimo);
                 }
                 case 5 ->{
-                    double suspensos = evaluacion.suspensos();
+                    int suspensos = evaluacion.suspensos();
                     System.out.println("El total de suspensos fue: " + suspensos);
                 }
                 case 6 ->{
-                    double aprobados = evaluacion.aprobados();
+                    int aprobados = evaluacion.aprobados();
                     System.out.println("El total de aprobados fue: " + aprobados);
                 }
                 case 7 ->{
-
+                    System.out.println("Introduce la nota: ");
+                    double nota = scan.nextDouble();
+                    System.out.println("¿Que alumno?");
+                    int alumno = scan.nextInt();
+                    evaluacion.cambiarNota(nota,alumno);
+                }
+                case 8 ->{
+                    int mejor = evaluacion.mejorAlumno();
+                    System.out.println("El alumno con mejor nota fue el alumno " + mejor);
+                }
+                case 9 ->{
+                    int peor = evaluacion.peorAlumno();
+                    System.out.println("El alumno con peor nota fue el alumno " + peor);
                 }
             }
         } while (opc != 12);
@@ -55,7 +67,8 @@ public class Principal {
 
         do {
             System.out.println("MENU\n1. Probar Notas\n2. Probar Media\n3. Nota Minima\n4. Nota Maxima\n" +
-                    "5. Total Suspensos\n6. Total Aprobados");
+                    "5. Total Suspensos\n6. Total Aprobados\n7. Cambiar Nota\n8. Mejor Alumno\n" +
+                    "9. Peor Alumno");
             opc = scan.nextInt();
 
         } while (opc < 1 || opc > 12);
