@@ -25,19 +25,12 @@ public class Evaluacion {
 
     public void leerNotas(int totalALumnos) {
 
-        boolean introducido = false;
-
         if (listaNotas != null) {
-            System.out.println("Notas ya introducidas desea introducirlas de nuevo(s/n)?");
-
             scan.nextLine();
-
+            System.out.println("Notas ya introducidas desea introducirlas de nuevo(s/n)?");
             String opc = scan.nextLine();
 
             while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n")) {
-
-                scan.nextLine();
-
                 System.out.println("Porfavor, (s/n)");
                 opc = scan.nextLine();
             }
@@ -75,5 +68,83 @@ public class Evaluacion {
         return "Evaluacion{" +
                 "listaNotas=" + Arrays.toString(listaNotas) +
                 '}';
+    }
+
+
+
+    // Metodos
+
+    public double media() {
+
+        double suma = 0;
+
+        if (this.listaNotas == null || this.listaNotas.length == 0) {
+            System.out.println("No hay notas disponibles para calcular la media.");
+            return 0.0;
+        }
+
+        for (double nota : this.listaNotas) {
+            suma += nota;
+        }
+
+        return suma / this.listaNotas.length;
+    }
+
+    public double minimo(){
+
+        double minimo;
+
+        minimo = listaNotas.length;
+
+        for (double nota : this.listaNotas) {
+            if (nota < minimo) {
+                minimo = nota;
+            }
+        }
+
+        return minimo;
+    }
+
+    public double maximo(){
+
+        double maximo;
+
+        maximo = listaNotas.length;
+
+        for (double nota : this.listaNotas) {
+            maximo = nota;
+        }
+
+        return maximo;
+    }
+
+    public double suspensos(){
+
+        int suspensos = 0;
+
+        for (double nota : listaNotas) {
+            if (nota < 5) {
+                suspensos++;
+            }
+        }
+
+        return suspensos;
+    }
+
+    public double aprobados(){
+
+        int aprobados = 0;
+
+        for (double nota : listaNotas) {
+            if (nota >= 5) {
+                aprobados++;
+            }
+        }
+
+        return aprobados;
+    }
+
+    public void cambiarNota(){
+
     }
 }
