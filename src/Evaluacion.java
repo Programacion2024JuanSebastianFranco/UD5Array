@@ -63,12 +63,6 @@ public class Evaluacion {
         this.listaNotas = listaNotas;
     }
 
-    @Override
-    public String toString() {
-        return "Evaluacion{" +
-                "listaNotas=" + Arrays.toString(listaNotas) +
-                '}';
-    }
 
 
 
@@ -192,6 +186,8 @@ public class Evaluacion {
         return indicePeor + 1;
     }
 
+
+
     public double notaAlumno(int indiceAlumno){
 
         if (indiceAlumno < 0 || indiceAlumno >= listaNotas.length) {
@@ -200,6 +196,8 @@ public class Evaluacion {
 
         return listaNotas[indiceAlumno];
     }
+
+
 
     public int[] dameAprobados() {
 
@@ -220,5 +218,94 @@ public class Evaluacion {
         }
 
         return indicesAprobados;
+    }
+
+
+
+    public int[] dameSuspensos() {
+        int totalSuspensos = suspensos();
+        if (totalSuspensos == 0) {
+            return null;
+        }
+
+        int[] indicesSuspensos = new int[totalSuspensos];
+        int index = 0;
+
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] < 5) {
+                indicesSuspensos[index] = i;
+                index++;
+            }
+        }
+        return indicesSuspensos;
+    }
+
+
+
+    public int primerMenor(double nota) {
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] < nota) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+
+    public double[] ordenar() {
+        double[] notasOrdenadas = Arrays.copyOf(listaNotas, listaNotas.length);
+        Arrays.sort(notasOrdenadas);
+        return notasOrdenadas;
+    }
+
+
+
+    public void analizaGrupo() {
+        int totalAlumnos = listaNotas.length;
+        int mayores7 = 0;
+        int entre5y7 = 0;
+        int menores5 = 0;
+
+        for (double nota : listaNotas) {
+            if (nota > 7) {
+                mayores7++;
+            } else if (nota >= 5 && nota <= 7) {
+                entre5y7++;
+            } else {
+                menores5++;
+            }
+        }
+
+        if (mayores7 >= (2.0 / 3.0) * totalAlumnos) {
+            System.out.println("VAMOS FENOMENAL");
+        } else if (entre5y7 >= (2.0 / 3.0) * totalAlumnos) {
+            System.out.println("REPASAR EJERCICIOS CON DIFICULTAD");
+        } else if (menores5 >= (2.0 / 3.0) * totalAlumnos) {
+            System.out.println("VAMOS MAL... REPETIR EL TEMARIO");
+        } else {
+            System.out.println("HACER SUBGRUPOS CON TAREAS DE DIFERENTE DIFICULTAD");
+        }
+    }
+
+
+
+    // ToString
+    @Override
+    public String toString() {
+        StringBuilder resultado = new StringBuilder();
+
+        resultado.append("Asignatura: ").append(nombreAsignatura).append("\n");
+
+        if (listaNotas != null && listaNotas.length > 0) {
+            resultado.append("Notas de los alumnos:\n");
+            for (int i = 0; i < listaNotas.length; i++) {
+                resultado.append("Alumno ").append(i + 1).append(": ").append(listaNotas[i]).append("\n");
+            }
+        } else {
+            resultado.append("Sin notas por el momento");
+        }
+
+        return resultado.toString();
     }
 }

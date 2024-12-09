@@ -8,7 +8,6 @@ public class Principal {
     public static void main(String[] args) {
 
         Principal principal = new Principal();
-
         int opc;
 
         Evaluacion evaluacion = new Evaluacion("Matematicas");
@@ -18,65 +17,126 @@ public class Principal {
             switch (opc) {
 
                 case 1 -> {
-                    System.out.println("numero de alumnos: ");
+                    System.out.println("Numero de alumnos: ");
                     int num = scan.nextInt();
                     evaluacion.leerNotas(num);
                     System.out.println(evaluacion);
                 }
+
                 case 2 -> {
-                    double media = evaluacion.media();
-                    System.out.println("La media del curso fue de: " + media);
+                    System.out.println("La media del curso fue de: " + evaluacion.media());
                 }
+
                 case 3 -> {
-                    double minimo = evaluacion.minimo();
-                    System.out.println("La nota minima de un estudiante fue de: " + minimo);
+                    System.out.println("La nota minima de un estudiante fue de: " + evaluacion.minimo());
                 }
+
                 case 4 -> {
-                    double minimo = evaluacion.maximo();
-                    System.out.println("La nota maxima de un estudiante fue de: " + minimo);
+                    System.out.println("La nota maxima de un estudiante fue de: " + evaluacion.maximo());
                 }
-                case 5 ->{
-                    int suspensos = evaluacion.suspensos();
-                    System.out.println("El total de suspensos fue: " + suspensos);
+
+                case 5 -> {
+                    System.out.println("El total de suspensos fue: " + evaluacion.suspensos());
                 }
-                case 6 ->{
-                    int aprobados = evaluacion.aprobados();
-                    System.out.println("El total de aprobados fue: " + aprobados);
+
+                case 6 -> {
+                    System.out.println("El total de aprobados fue: " + evaluacion.aprobados());
                 }
-                case 7 ->{
+
+                case 7 -> {
                     System.out.println("Introduce la nota: ");
                     double nota = scan.nextDouble();
-                    System.out.println("¿Que alumno?");
+                    System.out.println("¿Que alumno? (indice)");
                     int alumno = scan.nextInt();
-                    evaluacion.cambiarNota(nota,alumno);
+                    evaluacion.cambiarNota(nota, alumno);
                 }
-                case 8 ->{
-                    int mejor = evaluacion.mejorAlumno();
-                    System.out.println("El alumno con mejor nota fue el alumno " + mejor);
+
+                case 8 -> {
+                    System.out.println("El alumno con mejor nota fue el alumno " + evaluacion.mejorAlumno());
                 }
-                case 9 ->{
-                    int peor = evaluacion.peorAlumno();
-                    System.out.println("El alumno con peor nota fue el alumno " + peor);
+
+                case 9 -> {
+                    System.out.println("El alumno con peor nota fue el alumno " + evaluacion.peorAlumno());
                 }
-                case 10 ->{
+
+                case 10 -> {
                     int[] totalAprobados = evaluacion.dameAprobados();
-                    System.out.println(Arrays.toString(totalAprobados));
+                    if (totalAprobados != null) {
+                        System.out.println("Aprobados: " + Arrays.toString(totalAprobados));
+                    } else {
+                        System.out.println("No hay alumnos aprobados");
+                    }
+                }
+
+                case 11 -> {
+                    int[] totalSuspensos = evaluacion.dameSuspensos();
+                    if (totalSuspensos != null) {
+                        System.out.println("Suspensos: " + Arrays.toString(totalSuspensos));
+                    } else {
+                        System.out.println("No hay alumnos suspensos");
+                    }
+                }
+
+                case 12 -> {
+                    System.out.println("Introduce una nota para buscar el primer alumno con nota menor: ");
+                    double nota = scan.nextDouble();
+                    int indice = evaluacion.primerMenor(nota);
+                    if (indice != -1) {
+                        System.out.println("El primer alumno con nota menor a " + nota + " es el alumno " + (indice + 1));
+                    } else {
+                        System.out.println("No hay alumnos con nota menor a " + nota);
+                    }
+                }
+
+                case 13 -> {
+                    double[] ordenadas = evaluacion.ordenar();
+                    System.out.println("Notas ordenadas: " + Arrays.toString(ordenadas));
+                }
+
+                case 14 -> {
+                    evaluacion.analizaGrupo();
+                }
+
+                case 15 -> {
+                    System.out.println("Introduce el indice del alumno para consultar su nota: ");
+                    int indice = scan.nextInt();
+                    double nota = evaluacion.notaAlumno(indice - 1);
+                    if (nota != -1) {
+                        System.out.println("La nota del alumno " + indice + " es: " + nota);
+                    } else {
+                        System.out.println("Indice invalido o fuera de rango");
+                    }
                 }
             }
-        } while (opc != 12);
+        } while (opc != 16);
+        System.out.println("Adios");
     }
+
 
 
     int mostrarMenu() {
         int opc;
-
         do {
-            System.out.println("MENU\n1. Probar Notas\n2. Probar Media\n3. Nota Minima\n4. Nota Maxima\n" +
-                    "5. Total Suspensos\n6. Total Aprobados\n7. Cambiar Nota\n8. Mejor Alumno\n" +
-                    "9. Peor Alumno");
+            System.out.println("""
+                    MENU
+                    1. Probar Notas
+                    2. Probar Media
+                    3. Nota Minima
+                    4. Nota Maxima
+                    5. Total Suspensos
+                    6. Total Aprobados
+                    7. Cambiar Nota
+                    8. Mejor Alumno
+                    9. Peor Alumno
+                    10. Mostrar Indices de Aprobados
+                    11. Mostrar Indices de Suspensos
+                    12. Buscar Primer Alumno con Nota Menor
+                    13. Mostrar Notas Ordenadas
+                    14. Analizar Grupo
+                    15. Salir
+                    16. Salir""");
             opc = scan.nextInt();
-
-        } while (opc < 1 || opc > 12);
+        } while (opc < 1 || opc > 16);
         return opc;
     }
 }
