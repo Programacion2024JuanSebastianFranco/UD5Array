@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Principal {
@@ -56,6 +57,10 @@ public class Principal {
                 case 9 ->{
                     int peor = evaluacion.peorAlumno();
                     System.out.println("El alumno con peor nota fue el alumno " + peor);
+                }
+                case 10 ->{
+                    int[] totalAprobados = evaluacion.dameAprobados();
+                    System.out.println(Arrays.toString(totalAprobados));
                 }
             }
         } while (opc != 12);

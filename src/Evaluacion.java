@@ -192,9 +192,33 @@ public class Evaluacion {
         return indicePeor + 1;
     }
 
-    public void notaAlumno(int indiceAlumno){
-        indiceAlumno = listaNotas;
+    public double notaAlumno(int indiceAlumno){
 
-        return indiceAlumno;
+        if (indiceAlumno < 0 || indiceAlumno >= listaNotas.length) {
+            return -1;
+        }
+
+        return listaNotas[indiceAlumno];
+    }
+
+    public int[] dameAprobados() {
+
+        int totalAprobados = aprobados();
+
+        if (totalAprobados == 0) {
+            return null;
+        }
+
+        int[] indicesAprobados = new int[totalAprobados];
+        int casilla = 0;
+
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] >= 5) {
+                indicesAprobados[casilla] = i;
+                casilla++;
+            }
+        }
+
+        return indicesAprobados;
     }
 }
