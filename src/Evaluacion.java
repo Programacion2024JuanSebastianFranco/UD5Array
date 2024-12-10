@@ -1,75 +1,99 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Clase Evaluacion para gestionar las notas de los alumnos en una asignatura.
+ * Proporciona métodos para ingresar, analizar, modificar y obtener estadísticas
+ * sobre las notas de los alumnos.
+ */
 public class Evaluacion {
 
-    Scanner scan = new Scanner(System.in);
-
-    private String nombreAsignatura;
-    private double[] listaNotas;
-
+    // Atributos
+    private Scanner scan = new Scanner(System.in); // Escáner para entrada del usuario
+    private String nombreAsignatura; // Nombre de la asignatura
+    private double[] listaNotas;    // Array para almacenar las notas de los alumnos
 
     // Constructores
 
-
+    /**
+     * Constructor con el nombre de la asignatura.
+     *
+     * @param nombreAsignatura Nombre de la asignatura.
+     */
     public Evaluacion(String nombreAsignatura) {
         this.nombreAsignatura = nombreAsignatura;
     }
 
+    /**
+     * Constructor con el nombre de la asignatura y una lista inicial de notas.
+     *
+     * @param nombreAsignatura Nombre de la asignatura.
+     * @param listaNotas       Array con las notas iniciales de los alumnos.
+     */
     public Evaluacion(String nombreAsignatura, double[] listaNotas) {
         this.nombreAsignatura = nombreAsignatura;
         this.listaNotas = listaNotas;
     }
 
-    // Metodos
+    // Métodos
 
-    public void leerNotas(int totalALumnos) {
-
+    /**
+     * Permite al usuario introducir o reintroducir notas para un número determinado de alumnos.
+     *
+     * @param totalAlumnos Número total de alumnos de la asignatura.
+     */
+    public void leerNotas(int totalAlumnos) {
         if (listaNotas != null) {
+            // Preguntar si desea reintroducir las notas
             scan.nextLine();
-            System.out.println("Notas ya introducidas desea introducirlas de nuevo(s/n)?");
+            System.out.println("Notas ya introducidas. ¿Desea introducirlas de nuevo (s/n)?");
             String opc = scan.nextLine();
 
             while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n")) {
-                System.out.println("Porfavor, (s/n)");
+                System.out.println("Por favor, elija una opción válida (s/n):");
                 opc = scan.nextLine();
             }
 
             if (opc.equalsIgnoreCase("s")) {
-                listaNotas = new double[totalALumnos];
+                // Crear un nuevo array y permitir ingresar las notas
+                listaNotas = new double[totalAlumnos];
                 ingresarNota(listaNotas);
             } else if (opc.equalsIgnoreCase("n")) {
-                System.out.println("Adios");
+                System.out.println("No se han modificado las notas.");
             }
         } else {
-            listaNotas = new double[totalALumnos];
+            // Si no hay notas existentes, permitir su ingreso
+            listaNotas = new double[totalAlumnos];
             ingresarNota(listaNotas);
         }
     }
 
-    public void ingresarNota(double listaNotas[]) {
-
+    /**
+     * Permite ingresar las notas de los alumnos, verificando que estén dentro del rango válido.
+     *
+     * @param listaNotas Array en el que se almacenarán las notas ingresadas.
+     */
+    public void ingresarNota(double[] listaNotas) {
         double nota;
-
         for (int i = 0; i < listaNotas.length; ) {
-            System.out.println("Introduce la nota del alumno " + (i + 1));
+            System.out.println("Introduce la nota del alumno " + (i + 1) + ":");
             nota = scan.nextDouble();
             if (nota >= 0 && nota <= 10) {
-                listaNotas[i] = nota;
+                listaNotas[i] = nota; // Agregar nota válida
                 i++;
-            } else
-                System.out.println("Nota no valida, maxima 10 y minima 0");
+            } else {
+                System.out.println("Nota no válida. Introduzca una nota entre 0 y 10.");
+            }
         }
-        this.listaNotas = listaNotas;
+        this.listaNotas = listaNotas; // Guardar las notas en el atributo de la clase
     }
 
-
-
-
-    // Metodos
-
+    /**
+     * Calcula la media de las notas de los alumnos.
+     *
+     * @return La media de las notas o 0.0 si no hay notas disponibles.
+     */
     public double media() {
-
         double suma = 0;
 
         if (this.listaNotas == null || this.listaNotas.length == 0) {
@@ -78,219 +102,111 @@ public class Evaluacion {
         }
 
         for (double nota : this.listaNotas) {
-            suma += nota;
+            suma += nota; // Sumar todas las notas
         }
 
-        return suma / this.listaNotas.length;
+        return suma / this.listaNotas.length; // Dividir la suma entre el número de notas
     }
 
-    public double minimo(){
-
-        double minimo;
-
-        minimo = listaNotas.length;
-
-        for (double nota : this.listaNotas) {
-            if (nota < minimo) {
-                minimo = nota;
-            }
+    /**
+     * Encuentra la nota más baja entre los alumnos.
+     *
+     * @return La nota más baja.
+     */
+    public double minimo() {
+        if (listaNotas == null || listaNotas.length == 0) {
+            System.out.println("No hay notas disponibles.");
+            return -1;
         }
 
+        double minimo = listaNotas[0];
+        for (double nota : this.listaNotas) {
+            if (nota < minimo) {
+                minimo = nota; // Actualizar el mínimo si se encuentra una nota más baja
+            }
+        }
         return minimo;
     }
 
-    public double maximo(){
-
-        double maximo;
-
-        maximo = listaNotas.length;
-
-        for (double nota : this.listaNotas) {
-            if (nota > maximo)
-                maximo = nota;
+    /**
+     * Encuentra la nota más alta entre los alumnos.
+     *
+     * @return La nota más alta.
+     */
+    public double maximo() {
+        if (listaNotas == null || listaNotas.length == 0) {
+            System.out.println("No hay notas disponibles.");
+            return -1;
         }
 
+        double maximo = listaNotas[0];
+        for (double nota : this.listaNotas) {
+            if (nota > maximo) {
+                maximo = nota; // Actualizar el máximo si se encuentra una nota más alta
+            }
+        }
         return maximo;
     }
 
-    public int suspensos(){
-
+    /**
+     * Calcula cuántos alumnos han suspendido.
+     *
+     * @return Número de alumnos con nota menor a 5.
+     */
+    public int suspensos() {
         int suspensos = 0;
 
         for (double nota : listaNotas) {
             if (nota < 5) {
-                suspensos++;
+                suspensos++; // Incrementar el contador de suspensos
             }
         }
 
         return suspensos;
     }
 
-    public int aprobados(){
-
+    /**
+     * Calcula cuántos alumnos han aprobado.
+     *
+     * @return Número de alumnos con nota igual o mayor a 5.
+     */
+    public int aprobados() {
         int aprobados = 0;
 
         for (double nota : listaNotas) {
             if (nota >= 5) {
-                aprobados++;
+                aprobados++; // Incrementar el contador de aprobados
             }
         }
 
         return aprobados;
     }
 
+    /**
+     * Cambia la nota de un alumno específico.
+     *
+     * @param nuevaNota    Nueva nota para el alumno.
+     * @param indiceAlumno Índice del alumno (1 basado).
+     */
     public void cambiarNota(double nuevaNota, int indiceAlumno) {
-
         if (listaNotas == null) {
-            System.out.println("El array de notas no puede ser nulo");
+            System.out.println("El array de notas no puede ser nulo.");
+            return;
         }
 
-        if (indiceAlumno < 0 || indiceAlumno >= listaNotas.length + 1) {
-            System.out.println("El indice del alumno esta fuera del rango permitido");
+        if (indiceAlumno < 1 || indiceAlumno > listaNotas.length) {
+            System.out.println("El índice del alumno está fuera del rango permitido.");
+            return;
         }
 
-        listaNotas[indiceAlumno - 1] = nuevaNota;
+        listaNotas[indiceAlumno - 1] = nuevaNota; // Cambiar la nota en el índice especificado
     }
 
-    public int mejorAlumno() {
-        if (listaNotas == null || listaNotas.length == 0) {
-            System.out.println("El array de notas no puede estar vacío o ser nulo");
-        }
-
-        double maxNota = maximo();
-        int indiceMejor = 0;
-
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] == maxNota) {
-                indiceMejor = i;
-            }
-        }
-
-        return indiceMejor + 1;
-    }
-
-    public int peorAlumno() {
-        if (listaNotas == null || listaNotas.length == 0) {
-            System.out.println("El array de notas no puede estar vacío o ser nulo");
-        }
-
-        double minNota = minimo();
-        int indicePeor = 0;
-
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] == minNota) {
-                indicePeor= i;
-            }
-        }
-
-        return indicePeor + 1;
-    }
-
-
-
-    public double notaAlumno(int indiceAlumno){
-
-        if (indiceAlumno < 0 || indiceAlumno >= listaNotas.length) {
-            return -1;
-        }
-
-        return listaNotas[indiceAlumno];
-    }
-
-
-
-    public int[] dameAprobados() {
-
-        int totalAprobados = aprobados();
-
-        if (totalAprobados == 0) {
-            return null;
-        }
-
-        int[] indicesAprobados = new int[totalAprobados];
-        int casilla = 0;
-
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] >= 5) {
-                indicesAprobados[casilla] = i;
-                casilla++;
-            }
-        }
-
-        return indicesAprobados;
-    }
-
-
-
-    public int[] dameSuspensos() {
-        int totalSuspensos = suspensos();
-        if (totalSuspensos == 0) {
-            return null;
-        }
-
-        int[] indicesSuspensos = new int[totalSuspensos];
-        int index = 0;
-
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] < 5) {
-                indicesSuspensos[index] = i;
-                index++;
-            }
-        }
-        return indicesSuspensos;
-    }
-
-
-
-    public int primerMenor(double nota) {
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] < nota) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-
-
-    public double[] ordenar() {
-        double[] notasOrdenadas = Arrays.copyOf(listaNotas, listaNotas.length);
-        Arrays.sort(notasOrdenadas);
-        return notasOrdenadas;
-    }
-
-
-
-    public void analizaGrupo() {
-        int totalAlumnos = listaNotas.length;
-        int mayores7 = 0;
-        int entre5y7 = 0;
-        int menores5 = 0;
-
-        for (double nota : listaNotas) {
-            if (nota > 7) {
-                mayores7++;
-            } else if (nota >= 5 && nota <= 7) {
-                entre5y7++;
-            } else {
-                menores5++;
-            }
-        }
-
-        if (mayores7 >= (2.0 / 3.0) * totalAlumnos) {
-            System.out.println("VAMOS FENOMENAL");
-        } else if (entre5y7 >= (2.0 / 3.0) * totalAlumnos) {
-            System.out.println("REPASAR EJERCICIOS CON DIFICULTAD");
-        } else if (menores5 >= (2.0 / 3.0) * totalAlumnos) {
-            System.out.println("VAMOS MAL... REPETIR EL TEMARIO");
-        } else {
-            System.out.println("HACER SUBGRUPOS CON TAREAS DE DIFERENTE DIFICULTAD");
-        }
-    }
-
-
-
-    // ToString
+    /**
+     * Devuelve la representación en texto del estado de la asignatura y las notas.
+     *
+     * @return String con el nombre de la asignatura y las notas de los alumnos.
+     */
     @Override
     public String toString() {
         StringBuilder resultado = new StringBuilder();
@@ -303,7 +219,7 @@ public class Evaluacion {
                 resultado.append("Alumno ").append(i + 1).append(": ").append(listaNotas[i]).append("\n");
             }
         } else {
-            resultado.append("Sin notas por el momento");
+            resultado.append("Sin notas por el momento.");
         }
 
         return resultado.toString();

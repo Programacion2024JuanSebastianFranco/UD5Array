@@ -133,7 +133,7 @@ public class Principal {
                     12. Buscar Primer Alumno con Nota Menor
                     13. Mostrar Notas Ordenadas
                     14. Analizar Grupo
-                    15. Salir
+                    15. Nota Alumno
                     16. Salir""");
             opc = scan.nextInt();
         } while (opc < 1 || opc > 16);
