@@ -1,3 +1,5 @@
+package Principal1;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -10,7 +12,7 @@ public class Principal {
         Principal principal = new Principal();
         int opc;
 
-        Evaluacion evaluacion = new Evaluacion("Matematicas");
+        Asignatura evaluacion = new Asignatura("Matematicas");
 
         do {
             opc = principal.mostrarMenu();
@@ -23,25 +25,20 @@ public class Principal {
                     System.out.println(evaluacion);
                 }
 
-                case 2 -> {
-                    System.out.println("La media del curso fue de: " + evaluacion.media());
-                }
+                case 2 -> System.out.println("La media del curso fue de: " + evaluacion.media());
 
-                case 3 -> {
-                    System.out.println("La nota minima de un estudiante fue de: " + evaluacion.minimo());
-                }
 
-                case 4 -> {
-                    System.out.println("La nota maxima de un estudiante fue de: " + evaluacion.maximo());
-                }
+                case 3 -> System.out.println("La nota minima de un estudiante fue de: " + evaluacion.minimo());
 
-                case 5 -> {
-                    System.out.println("El total de suspensos fue: " + evaluacion.suspensos());
-                }
 
-                case 6 -> {
-                    System.out.println("El total de aprobados fue: " + evaluacion.aprobados());
-                }
+                case 4 -> System.out.println("La nota maxima de un estudiante fue de: " + evaluacion.maximo());
+
+
+                case 5 -> System.out.println("El total de suspensos fue: " + evaluacion.suspensos());
+
+
+                case 6 -> System.out.println("El total de aprobados fue: " + evaluacion.aprobados());
+
 
                 case 7 -> {
                     System.out.println("Introduce la nota: ");
@@ -51,13 +48,11 @@ public class Principal {
                     evaluacion.cambiarNota(nota, alumno);
                 }
 
-                case 8 -> {
-                    System.out.println("El alumno con mejor nota fue el alumno " + evaluacion.mejorAlumno());
-                }
+                case 8 -> System.out.println("El alumno con mejor nota fue el alumno " + evaluacion.mejorAlumno());
 
-                case 9 -> {
-                    System.out.println("El alumno con peor nota fue el alumno " + evaluacion.peorAlumno());
-                }
+
+                case 9 -> System.out.println("El alumno con peor nota fue el alumno " + evaluacion.peorAlumno());
+
 
                 case 10 -> {
                     int[] totalAprobados = evaluacion.dameAprobados();

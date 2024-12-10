@@ -1,12 +1,14 @@
+package Principal1;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Clase Evaluacion para gestionar las notas de los alumnos en una asignatura.
+ * Clase Principal1.Evaluacion para gestionar las notas de los alumnos en una asignatura.
  * Proporciona métodos para ingresar, analizar, modificar y obtener estadísticas
  * sobre las notas de los alumnos.
  */
-public class Evaluacion {
+public class Asignatura {
 
     // Atributos
     private Scanner scan = new Scanner(System.in); // Escáner para entrada del usuario
@@ -20,7 +22,7 @@ public class Evaluacion {
      *
      * @param nombreAsignatura Nombre de la asignatura.
      */
-    public Evaluacion(String nombreAsignatura) {
+    public Asignatura(String nombreAsignatura) {
         this.nombreAsignatura = nombreAsignatura;
     }
 
@@ -30,7 +32,7 @@ public class Evaluacion {
      * @param nombreAsignatura Nombre de la asignatura.
      * @param listaNotas       Array con las notas iniciales de los alumnos.
      */
-    public Evaluacion(String nombreAsignatura, double[] listaNotas) {
+    public Asignatura(String nombreAsignatura, double[] listaNotas) {
         this.nombreAsignatura = nombreAsignatura;
         this.listaNotas = listaNotas;
     }
@@ -203,6 +205,186 @@ public class Evaluacion {
     }
 
     /**
+     * Encuentra el índice del alumno con la nota más alta.
+     *
+     * @return Índice del alumno con la nota más alta (1 basado).
+     */
+    public int mejorAlumno() {
+        if (listaNotas == null || listaNotas.length == 0) {
+            System.out.println("El array de notas no puede estar vacío o ser nulo.");
+            return -1;
+        }
+
+        double maxNota = maximo();
+        int indiceMejor = 0;
+
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] == maxNota) {
+                indiceMejor = i;
+                break;
+            }
+        }
+
+        return indiceMejor + 1;
+    }
+
+    /**
+     * Encuentra el índice del alumno con la nota más baja.
+     *
+     * @return Índice del alumno con la nota más baja (1 basado).
+     */
+    public int peorAlumno() {
+        if (listaNotas == null || listaNotas.length == 0) {
+            System.out.println("El array de notas no puede estar vacío o ser nulo.");
+            return -1;
+        }
+
+        double minNota = minimo();
+        int indicePeor = 0;
+
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] == minNota) {
+                indicePeor = i;
+                break;
+            }
+        }
+
+        return indicePeor + 1;
+    }
+
+    /**
+     * Devuelve la nota de un alumno específico.
+     *
+     * @param indiceAlumno Índice del alumno (0 basado).
+     * @return La nota del alumno o -1 si el índice es inválido.
+     */
+    public double notaAlumno(int indiceAlumno) {
+        if (listaNotas == null || listaNotas.length == 0) {
+            System.out.println("El array de notas no puede estar vacío o ser nulo.");
+            return -1;
+        } else if (indiceAlumno >= 0 && indiceAlumno < listaNotas.length) {
+            return listaNotas[indiceAlumno];
+        }
+
+        System.out.println("Índice del alumno fuera del rango permitido.");
+        return -1;
+    }
+
+    /**
+     * Devuelve los índices de los alumnos aprobados.
+     *
+     * @return Array de índices de los alumnos con notas mayores o iguales a 5.
+     */
+    public int[] dameAprobados() {
+        int totalAprobados = aprobados();
+
+        if (totalAprobados == 0) {
+            System.out.println("No hay alumnos aprobados.");
+            return new int[0];
+        }
+
+        int[] indicesAprobados = new int[totalAprobados];
+        int casilla = 0;
+
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] >= 5) {
+                indicesAprobados[casilla] = i;
+                casilla++;
+            }
+        }
+
+        return indicesAprobados;
+    }
+
+    /**
+     * Devuelve los índices de los alumnos suspensos.
+     *
+     * @return Array de índices de los alumnos con notas menores a 5.
+     */
+    public int[] dameSuspensos() {
+        int totalSuspensos = suspensos();
+
+        if (totalSuspensos == 0) {
+            System.out.println("No hay alumnos suspensos.");
+            return new int[0];
+        }
+
+        int[] indicesSuspensos = new int[totalSuspensos];
+        int index = 0;
+
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] < 5) {
+                indicesSuspensos[index] = i;
+                index++;
+            }
+        }
+        return indicesSuspensos;
+    }
+
+    /**
+     * Encuentra el índice del primer alumno cuya nota es menor que un valor dado.
+     *
+     * @param nota Valor de referencia para comparar.
+     * @return Índice del primer alumno con nota menor o -1 si no hay coincidencias.
+     */
+    public int primerMenor(double nota) {
+        for (int i = 0; i < listaNotas.length; i++) {
+            if (listaNotas[i] < nota) {
+                return i;
+            }
+        }
+        return -1; // Si no se encuentra ninguna nota menor
+    }
+
+    /**
+     * Devuelve un array con las notas ordenadas de menor a mayor.
+     *
+     * @return Array con las notas ordenadas.
+     */
+    public double[] ordenar() {
+        double[] notasOrdenadas = Arrays.copyOf(listaNotas, listaNotas.length);
+        Arrays.sort(notasOrdenadas);
+        return notasOrdenadas;
+    }
+
+    /**
+     * Analiza las notas del grupo y sugiere acciones en función del rendimiento.
+     * Las categorías son:
+     * - Más de 2/3 del grupo con nota mayor a 7: "VAMOS FENOMENAL".
+     * - Más de 2/3 del grupo con nota entre 5 y 7: "REPASAR EJERCICIOS CON DIFICULTAD".
+     * - Más de 2/3 del grupo con nota menor a 5: "VAMOS MAL... REPETIR EL TEMARIO".
+     * - Otros casos: "HACER SUBGRUPOS CON TAREAS DE DIFERENTE DIFICULTAD".
+     */
+    public void analizaGrupo() {
+        int totalAlumnos = listaNotas.length;
+        int mayores7 = 0;
+        int entre5y7 = 0;
+        int menores5 = 0;
+
+        // Clasificar las notas en diferentes categorías
+        for (double nota : listaNotas) {
+            if (nota > 7) {
+                mayores7++;
+            } else if (nota >= 5 && nota <= 7) {
+                entre5y7++;
+            } else {
+                menores5++;
+            }
+        }
+
+        // Análisis del grupo
+        if (mayores7 >= (2.0 / 3.0) * totalAlumnos) {
+            System.out.println("VAMOS FENOMENAL");
+        } else if (entre5y7 >= (2.0 / 3.0) * totalAlumnos) {
+            System.out.println("REPASAR EJERCICIOS CON DIFICULTAD");
+        } else if (menores5 >= (2.0 / 3.0) * totalAlumnos) {
+            System.out.println("VAMOS MAL... REPETIR EL TEMARIO");
+        } else {
+            System.out.println("HACER SUBGRUPOS CON TAREAS DE DIFERENTE DIFICULTAD");
+        }
+    }
+
+/**
      * Devuelve la representación en texto del estado de la asignatura y las notas.
      *
      * @return String con el nombre de la asignatura y las notas de los alumnos.
@@ -224,4 +406,5 @@ public class Evaluacion {
 
         return resultado.toString();
     }
+
 }
