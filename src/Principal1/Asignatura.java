@@ -37,6 +37,7 @@ public class Asignatura {
         this.listaNotas = listaNotas;
     }
 
+
     // Métodos
     /**
      * Permite al usuario introducir o reintroducir notas para un número determinado de alumnos.
