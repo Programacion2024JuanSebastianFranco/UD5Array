@@ -15,8 +15,11 @@ public class Asignatura {
     private String nombreAsignatura; // Nombre de la asignatura
     private double[] listaNotas;    // Array para almacenar las notas de los alumnos
 
-    // Constructores
 
+
+
+
+    // Constructores
     /**
      * Constructor con el nombre de la asignatura.
      *
@@ -36,6 +39,10 @@ public class Asignatura {
         this.nombreAsignatura = nombreAsignatura;
         this.listaNotas = listaNotas;
     }
+
+
+
+
 
 
     // Métodos
