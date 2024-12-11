@@ -100,7 +100,7 @@ public class Asignatura {
 
         if (this.listaNotas == null || this.listaNotas.length == 0) {
             System.out.println("No hay notas disponibles para calcular la media.");
-            return 0.0;
+            suma = 0.0;
         }
 
         for (double nota : this.listaNotas) {
@@ -116,12 +116,14 @@ public class Asignatura {
      * @return La nota más baja.
      */
     public double minimo() {
-        if (listaNotas == null || listaNotas.length == 0) {
-            System.out.println("No hay notas disponibles.");
-            return -1;
-        }
 
         double minimo = listaNotas[0];
+
+        if (listaNotas == null || listaNotas.length == 0) {
+            System.out.println("No hay notas disponibles.");
+            minimo = -1;
+        }
+
         for (double nota : this.listaNotas) {
             if (nota < minimo) {
                 minimo = nota; // Actualizar el mínimo si se encuentra una nota más baja
@@ -136,12 +138,14 @@ public class Asignatura {
      * @return La nota más alta.
      */
     public double maximo() {
+
+        double maximo = listaNotas[0];
+
         if (listaNotas == null || listaNotas.length == 0) {
             System.out.println("No hay notas disponibles.");
             return -1;
         }
 
-        double maximo = listaNotas[0];
         for (double nota : this.listaNotas) {
             if (nota > maximo) {
                 maximo = nota; // Actualizar el máximo si se encuentra una nota más alta
@@ -193,12 +197,10 @@ public class Asignatura {
     public void cambiarNota(double nuevaNota, int indiceAlumno) {
         if (listaNotas == null) {
             System.out.println("El array de notas no puede ser nulo.");
-            return;
         }
 
         if (indiceAlumno < 1 || indiceAlumno > listaNotas.length) {
             System.out.println("El índice del alumno está fuera del rango permitido.");
-            return;
         }
 
         listaNotas[indiceAlumno - 1] = nuevaNota; // Cambiar la nota en el índice especificado
@@ -210,18 +212,19 @@ public class Asignatura {
      * @return Índice del alumno con la nota más alta (1 basado).
      */
     public int mejorAlumno() {
+        int indiceMejor = 0;
+
         if (listaNotas == null || listaNotas.length == 0) {
             System.out.println("El array de notas no puede estar vacío o ser nulo.");
-            return -1;
+            indiceMejor = -1;
         }
 
         double maxNota = maximo();
-        int indiceMejor = 0;
+
 
         for (int i = 0; i < listaNotas.length; i++) {
             if (listaNotas[i] == maxNota) {
                 indiceMejor = i;
-                break;
             }
         }
 
@@ -234,18 +237,19 @@ public class Asignatura {
      * @return Índice del alumno con la nota más baja (1 basado).
      */
     public int peorAlumno() {
+        int indicePeor = 0;
+
         if (listaNotas == null || listaNotas.length == 0) {
             System.out.println("El array de notas no puede estar vacío o ser nulo.");
-            return -1;
+            indicePeor =  -1;
         }
 
         double minNota = minimo();
-        int indicePeor = 0;
+
 
         for (int i = 0; i < listaNotas.length; i++) {
             if (listaNotas[i] == minNota) {
                 indicePeor = i;
-                break;
             }
         }
 
@@ -259,15 +263,16 @@ public class Asignatura {
      * @return La nota del alumno o -1 si el índice es inválido.
      */
     public double notaAlumno(int indiceAlumno) {
+        double resultado = -1;
+
         if (listaNotas == null || listaNotas.length == 0) {
             System.out.println("El array de notas no puede estar vacío o ser nulo.");
-            return -1;
         } else if (indiceAlumno >= 0 && indiceAlumno < listaNotas.length) {
-            return listaNotas[indiceAlumno];
+            resultado = listaNotas[indiceAlumno];
+        } else {
+            System.out.println("Índice del alumno fuera del rango permitido.");
         }
-
-        System.out.println("Índice del alumno fuera del rango permitido.");
-        return -1;
+        return resultado;
     }
 
     /**
@@ -277,24 +282,27 @@ public class Asignatura {
      */
     public int[] dameAprobados() {
         int totalAprobados = aprobados();
+        int[] resultado;
 
         if (totalAprobados == 0) {
             System.out.println("No hay alumnos aprobados.");
-            return new int[0];
-        }
+            resultado = new int[0];
+        } else {
+            int[] indicesAprobados = new int[totalAprobados];
+            int casilla = 0;
 
-        int[] indicesAprobados = new int[totalAprobados];
-        int casilla = 0;
-
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] >= 5) {
-                indicesAprobados[casilla] = i;
-                casilla++;
+            for (int i = 0; i < listaNotas.length; i++) {
+                if (listaNotas[i] >= 5) {
+                    indicesAprobados[casilla] = i;
+                    casilla++;
+                }
             }
+            resultado = indicesAprobados;
         }
 
-        return indicesAprobados;
+        return resultado;
     }
+
 
     /**
      * Devuelve los índices de los alumnos suspensos.
@@ -303,22 +311,25 @@ public class Asignatura {
      */
     public int[] dameSuspensos() {
         int totalSuspensos = suspensos();
+        int[] resultado;
 
         if (totalSuspensos == 0) {
             System.out.println("No hay alumnos suspensos.");
-            return new int[0];
-        }
+            resultado = new int[0];
+        } else {
+            int[] indicesSuspensos = new int[totalSuspensos];
+            int index = 0;
 
-        int[] indicesSuspensos = new int[totalSuspensos];
-        int index = 0;
-
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] < 5) {
-                indicesSuspensos[index] = i;
-                index++;
+            for (int i = 0; i < listaNotas.length; i++) {
+                if (listaNotas[i] < 5) {
+                    indicesSuspensos[index] = i;
+                    index++;
+                }
             }
+            resultado = indicesSuspensos;
         }
-        return indicesSuspensos;
+
+        return resultado;
     }
 
     /**
@@ -328,12 +339,15 @@ public class Asignatura {
      * @return Índice del primer alumno con nota menor o -1 si no hay coincidencias.
      */
     public int primerMenor(double nota) {
+
+        int vuelta = -1;
+
         for (int i = 0; i < listaNotas.length; i++) {
             if (listaNotas[i] < nota) {
-                return i;
+                vuelta = i;
             }
         }
-        return -1; // Si no se encuentra ninguna nota menor
+        return vuelta; // Si no se encuentra ninguna nota menor
     }
 
     /**
