@@ -107,7 +107,7 @@ public class Asignatura {
 
         if (this.listaNotas == null || this.listaNotas.length == 0) {
             System.out.println("No hay notas disponibles para calcular la media.");
-            suma = 0.0;
+            suma = 0;
         }
 
         for (double nota : this.listaNotas) {
@@ -145,7 +145,7 @@ public class Asignatura {
 
         if (listaNotas == null || listaNotas.length == 0) {
             System.out.println("No hay notas disponibles.");
-            return -1;
+            maximo = -1;
         }
 
         for (double nota : this.listaNotas) {
