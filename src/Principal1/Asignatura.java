@@ -399,6 +399,7 @@ public class Asignatura {
         }
     }
 
+
     /**
      * Devuelve la representación en texto del estado de la asignatura y las notas.
      *
