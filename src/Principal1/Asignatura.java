@@ -241,7 +241,6 @@ public class Asignatura {
 
         double minNota = minimo();
 
-
         for (int i = 0; i < listaNotas.length; i++) {
             if (listaNotas[i] == minNota) {
                 indicePeor = i;
