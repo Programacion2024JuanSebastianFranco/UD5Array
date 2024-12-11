@@ -36,6 +36,28 @@ public class Grupo {
         }
     }
 
+    public void mostrarAlumnos(){
+        System.out.println(Arrays.toString(alumnos));
+    }
+
+    public void leerAsignaturas(){
+        if (asignaturas != null) {
+            for (int i = 0; i < totalAsignaturas; i++) {
+                System.out.println("Nombre de la asignatura: ");
+                String asignatura = scan.nextLine();
+                asignaturas[i] = new Asignatura(asignatura);
+                asignaturas[i].leerNotas(totalAlumnos);
+            }
+
+        }
+        else {
+            System.out.println("Sin asignaturas asignadas");
+        }
+    }
+
+    public void mostrarAignaturas(){
+        System.out.println(Arrays.toString(asignaturas));
+    }
 
 
 }
