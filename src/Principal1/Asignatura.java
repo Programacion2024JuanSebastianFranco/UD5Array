@@ -38,7 +38,6 @@ public class Asignatura {
     }
 
     // Métodos
-
     /**
      * Permite al usuario introducir o reintroducir notas para un número determinado de alumnos.
      *
