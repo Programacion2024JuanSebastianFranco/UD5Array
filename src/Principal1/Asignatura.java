@@ -119,11 +119,6 @@ public class Asignatura {
 
         double minimo = listaNotas[0];
 
-        if (listaNotas == null || listaNotas.length == 0) {
-            System.out.println("No hay notas disponibles.");
-            minimo = -1;
-        }
-
         for (double nota : this.listaNotas) {
             if (nota < minimo) {
                 minimo = nota; // Actualizar el mínimo si se encuentra una nota más baja
@@ -398,7 +393,7 @@ public class Asignatura {
         }
     }
 
-/**
+    /**
      * Devuelve la representación en texto del estado de la asignatura y las notas.
      *
      * @return String con el nombre de la asignatura y las notas de los alumnos.
