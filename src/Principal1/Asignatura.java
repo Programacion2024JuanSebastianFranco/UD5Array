@@ -191,11 +191,11 @@ public class Asignatura {
      */
     public void cambiarNota(double nuevaNota, int indiceAlumno) {
         if (listaNotas == null) {
-            System.out.println("El array de notas no puede ser nulo.");
+            System.out.println("El array de notas no puede ser nulo");
         }
 
         if (indiceAlumno < 1 || indiceAlumno > listaNotas.length) {
-            System.out.println("El índice del alumno está fuera del rango permitido.");
+            System.out.println("El indice del alumno esta fuera del rango permitido");
         }
 
         listaNotas[indiceAlumno - 1] = nuevaNota; // Cambiar la nota en el índice especificado
@@ -210,7 +210,7 @@ public class Asignatura {
         int indiceMejor = 0;
 
         if (listaNotas == null || listaNotas.length == 0) {
-            System.out.println("El array de notas no puede estar vacío o ser nulo.");
+            System.out.println("El array de notas no puede estar vacío o ser nulo");
             indiceMejor = -1;
         }
 
@@ -235,7 +235,7 @@ public class Asignatura {
         int indicePeor = 0;
 
         if (listaNotas == null || listaNotas.length == 0) {
-            System.out.println("El array de notas no puede estar vacío o ser nulo.");
+            System.out.println("El array de notas no puede estar vacío o ser nulo");
             indicePeor =  -1;
         }
 
@@ -261,11 +261,11 @@ public class Asignatura {
         double resultado = -1;
 
         if (listaNotas == null || listaNotas.length == 0) {
-            System.out.println("El array de notas no puede estar vacío o ser nulo.");
+            System.out.println("El array de notas no puede estar vacío o ser nulo");
         } else if (indiceAlumno >= 0 && indiceAlumno < listaNotas.length) {
             resultado = listaNotas[indiceAlumno];
         } else {
-            System.out.println("Índice del alumno fuera del rango permitido.");
+            System.out.println("Indice del alumno fuera del rango");
         }
         return resultado;
     }
@@ -280,7 +280,7 @@ public class Asignatura {
         int[] resultado;
 
         if (totalAprobados == 0) {
-            System.out.println("No hay alumnos aprobados.");
+            System.out.println("No hay alumnos aprobados");
             resultado = new int[0];
         } else {
             int[] indicesAprobados = new int[totalAprobados];
@@ -309,7 +309,7 @@ public class Asignatura {
         int[] resultado;
 
         if (totalSuspensos == 0) {
-            System.out.println("No hay alumnos suspensos.");
+            System.out.println("No hay alumnos suspensos");
             resultado = new int[0];
         } else {
             int[] indicesSuspensos = new int[totalSuspensos];
