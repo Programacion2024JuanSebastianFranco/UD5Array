@@ -16,10 +16,8 @@ public class Asignatura {
     private double[] listaNotas;    // Array para almacenar las notas de los alumnos
 
 
-
-
-
     // Constructores
+
     /**
      * Constructor con el nombre de la asignatura.
      *
@@ -41,11 +39,8 @@ public class Asignatura {
     }
 
 
-
-
-
-
     // Métodos
+
     /**
      * Permite al usuario introducir o reintroducir notas para un número determinado de alumnos.
      *
@@ -219,14 +214,15 @@ public class Asignatura {
         if (listaNotas == null || listaNotas.length == 0) {
             System.out.println("El array de notas no puede estar vacío o ser nulo");
             indiceMejor = -1;
-        }
+        } else {
 
-        double maxNota = maximo();
+            double maxNota = maximo();
 
 
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] == maxNota) {
-                indiceMejor = i;
+            for (int i = 0; i < listaNotas.length; i++) {
+                if (listaNotas[i] == maxNota) {
+                    indiceMejor = i;
+                }
             }
         }
 
@@ -243,14 +239,15 @@ public class Asignatura {
 
         if (listaNotas == null || listaNotas.length == 0) {
             System.out.println("El array de notas no puede estar vacío o ser nulo");
-            indicePeor =  -1;
-        }
+            indicePeor = -1;
+        } else {
 
-        double minNota = minimo();
+            double minNota = minimo();
 
-        for (int i = 0; i < listaNotas.length; i++) {
-            if (listaNotas[i] == minNota) {
-                indicePeor = i;
+            for (int i = 0; i < listaNotas.length; i++) {
+                if (listaNotas[i] == minNota) {
+                    indicePeor = i;
+                }
             }
         }
 
@@ -283,11 +280,10 @@ public class Asignatura {
      */
     public int[] dameAprobados() {
         int totalAprobados = aprobados();
-        int[] resultado;
+        int[] resultado = new int[totalAprobados];
 
         if (totalAprobados == 0) {
             System.out.println("No hay alumnos aprobados");
-            resultado = new int[0];
         } else {
             int[] indicesAprobados = new int[totalAprobados];
             int casilla = 0;
