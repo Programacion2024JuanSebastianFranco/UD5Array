@@ -14,6 +14,7 @@ public class Grupo {
     private Scanner scan = new Scanner(System.in);
 
 
+
     public Grupo(String nombreGrupo, int totalAlumnos, int totalAsignaturas) {
         this.nombreGrupo = "DAM 1K";
         this.alumnos = new String[totalAlumnos];
@@ -60,4 +61,10 @@ public class Grupo {
     }
 
 
+
+
+    @Override
+    public String toString() {
+        return ;
+    }
 }
