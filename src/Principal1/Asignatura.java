@@ -12,7 +12,7 @@ public class Asignatura {
 
     // Atributos
     private Scanner scan = new Scanner(System.in); // Escáner para entrada del usuario
-    private String nombreAsignatura; // Nombre de la asignatura
+    String nombreAsignatura; // Nombre de la asignatura
     private double[] listaNotas;    // Array para almacenar las notas de los alumnos
 
 
@@ -36,6 +36,10 @@ public class Asignatura {
     public Asignatura(String nombreAsignatura, double[] listaNotas) {
         this.nombreAsignatura = nombreAsignatura;
         this.listaNotas = listaNotas;
+    }
+
+    public double[] getListaNotas() {
+        return listaNotas;
     }
 
 

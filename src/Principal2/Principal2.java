@@ -7,40 +7,18 @@ public class Principal2 {
 
     public static void main(String[] args) {
 
-        Grupo grupo = new Grupo("1KDAM", 2, 2);
+        Grupo grupo = new Grupo("1KDAM", 1, 2);
 
         Principal2 principal2 = new Principal2();
         int opc;
         do {
             opc = principal2.mostrarMenu();
+
             switch (opc) {
-                case 1 ->
-
-                case 2 ->
-
-                case 3 ->
-
-                case 4 ->
-
-                case 5 ->
-
-                case 6 ->
-
-                case 7 ->
-
-                case 8 ->
-
-                case 9 ->
-
-                case 10 ->
-
-                case 11 ->
-
-                case 12 ->
-
-                case 13 ->
-
-                default -> System.out.println("Adios");
+                case 1 -> {
+                    grupo.leerAlumnos();
+                    System.out.println(grupo);
+                }
 
             }
         } while (opc != 16);
