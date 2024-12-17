@@ -7,7 +7,7 @@ public class Principal2 {
 
     public static void main(String[] args) {
 
-        Grupo grupo = new Grupo("1KDAM", 1, 2);
+        Grupo grupo = new Grupo();
 
         Principal2 principal2 = new Principal2();
         int opc;
@@ -16,7 +16,6 @@ public class Principal2 {
 
             switch (opc) {
                 case 1 -> {
-                    grupo.leerAlumnos();
                     System.out.println(grupo);
                 }
 

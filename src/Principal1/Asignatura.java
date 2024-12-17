@@ -12,7 +12,7 @@ public class Asignatura {
 
     // Atributos
     private Scanner scan = new Scanner(System.in); // Escáner para entrada del usuario
-    String nombreAsignatura; // Nombre de la asignatura
+    private String nombreAsignatura; // Nombre de la asignatura
     private double[] listaNotas;    // Array para almacenar las notas de los alumnos
 
 

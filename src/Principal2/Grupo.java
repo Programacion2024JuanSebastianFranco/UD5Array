@@ -13,7 +13,26 @@ public class Grupo {
     private int totalAsignaturas;
     private Scanner scan = new Scanner(System.in);
 
+    public Grupo(){
+        //this("1k",4,3);
+        nombreGrupo="1K";
+        totalAlumnos=3;
+        totalAsignaturas=3;
 
+        this.alumnos=new String[totalAlumnos];
+        alumnos[0]="Pepe";
+        alumnos[1]="Maria";
+        alumnos[2]="Juan";
+
+        this.asignaturas=new Asignatura[totalAsignaturas];
+        double[] notas1={2.5,5.5,10};
+        asignaturas[0]=new Asignatura("Matematicas",notas1);
+
+        double[] notas2={2.5,6,1};
+        asignaturas[1]=new Asignatura("Programación",notas2);
+        double[] notas3={7,5.5,10};
+        asignaturas[2]=new Asignatura("Inglés",notas3);
+    }
 
     public Grupo(String nombreGrupo, int totalAlumnos, int totalAsignaturas) {
         this.nombreGrupo = "DAM 1K";
@@ -63,29 +82,54 @@ public class Grupo {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public String toString() {
-        // Construir la cadena con los nombres de los alumnos
-        StringBuilder nombresFormateados = new StringBuilder();
-        for (String nombre : alumnos) {
-            nombresFormateados.append(String.format("%-30s", nombre)); // Alinea los nombres a la izquierda, con un ancho de 30 caracteres
-        }
 
-        // Crear una cadena para las notas de los alumnos en cada asignatura
-        StringBuilder notasFormateadas = new StringBuilder();
-        for (int i = 0; i < totalAsignaturas; i++) {
-            double[] notas = asignaturas[i].getListaNotas(); // Obtener las notas de la asignatura i
-            notasFormateadas.append(String.format("%-30s", asignaturas[i].nombreAsignatura)); // Añadir el nombre de la asignatura
+        StringBuilder resultado = new StringBuilder();
 
-            // Formatear y añadir las notas de los alumnos para esa asignatura
-            for (double nota : notas) {
-                notasFormateadas.append(String.format("%-15.2f", nota)); // Formatear cada nota con 2 decimales
+        resultado.append(Arrays.toString(asignaturas)).append("\n");
+
+            for (int i = 0; i < totalAlumnos; i++) {
+                resultado.append(Arrays.toString(alumnos)).append(i).append("%-30s");
             }
-            notasFormateadas.append("\n"); // Añadir un salto de línea entre asignaturas
-        }
 
-        // Devolver la cadena formateada con los nombres y las notas
-        return nombresFormateados.toString() + "\n" + notasFormateadas.toString();
+            resultado.append("\n");
+
+        return resultado.toString();
     }
 
 }
