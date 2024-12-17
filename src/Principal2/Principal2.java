@@ -14,31 +14,23 @@ public class Principal2 {
         do {
             opc = principal2.mostrarMenu();
             switch (opc) {
-
                 case 1 ->
 
-                case 2 -> S
-
+                case 2 ->
 
                 case 3 ->
 
-
                 case 4 ->
-
 
                 case 5 ->
 
-
                 case 6 ->
-
 
                 case 7 ->
 
                 case 8 ->
 
-
                 case 9 ->
-
 
                 case 10 ->
 
@@ -48,7 +40,7 @@ public class Principal2 {
 
                 case 13 ->
 
-                case default -> System.out.println("Adios");
+                default -> System.out.println("Adios");
 
             }
         } while (opc != 16);
