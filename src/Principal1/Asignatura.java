@@ -1,5 +1,4 @@
 package Principal1;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -44,6 +43,15 @@ public class Asignatura {
 
 
     // Métodos
+
+
+    public String getNombreAsignatura() {
+        return nombreAsignatura;
+    }
+
+    public void setNombreAsignatura(String nombreAsignatura) {
+        this.nombreAsignatura = nombreAsignatura;
+    }
 
     /**
      * Permite al usuario introducir o reintroducir notas para un número determinado de alumnos.
@@ -370,11 +378,12 @@ public class Asignatura {
      * - Más de 2/3 del grupo con nota menor a 5: "VAMOS MAL... REPETIR EL TEMARIO".
      * - Otros casos: "HACER SUBGRUPOS CON TAREAS DE DIFERENTE DIFICULTAD".
      */
-    public void analizaGrupo() {
+    public String analizaGrupo() {
         int totalAlumnos = listaNotas.length;
         int mayores7 = 0;
         int entre5y7 = 0;
         int menores5 = 0;
+        String resultado = "";  // Variable para acumular el mensaje
 
         // Clasificar las notas en diferentes categorías
         for (double nota : listaNotas) {
@@ -389,15 +398,18 @@ public class Asignatura {
 
         // Análisis del grupo
         if (mayores7 >= (2.0 / 3.0) * totalAlumnos) {
-            System.out.println("VAMOS FENOMENAL");
+            resultado = "VAMOS FENOMENAL";
         } else if (entre5y7 >= (2.0 / 3.0) * totalAlumnos) {
-            System.out.println("REPASAR EJERCICIOS CON DIFICULTAD");
+            resultado = "REPASAR EJERCICIOS CON DIFICULTAD";
         } else if (menores5 >= (2.0 / 3.0) * totalAlumnos) {
-            System.out.println("VAMOS MAL... REPETIR EL TEMARIO");
+            resultado = "VAMOS MAL... REPETIR EL TEMARIO";
         } else {
-            System.out.println("HACER SUBGRUPOS CON TAREAS DE DIFERENTE DIFICULTAD");
+            resultado = "HACER SUBGRUPOS CON TAREAS DE DIFERENTE DIFICULTAD";
         }
+
+        return resultado;  // Devuelves el mensaje final aquí
     }
+
 
 
     /**
